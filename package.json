@@ -2,6 +2,7 @@
   "name": "electron-js",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
@@ -11,11 +12,17 @@
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.0"
   },
+  "main": "electron/main.js",
+  "productName": "Electron-js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export BROWSER=none && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
+    "build-electron": "mkdir build/electron && cp -r electron/. build/electron",
+    "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +41,29 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "repository": "https://github.com/V-o-RT-e-X/electron-js.git",
+  "author": "Vitaly <vkryloveczkij@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^16.0.7",
+    "electron-builder": "^22.14.5"
+  },
+  "build": {
+    "win" : {
+      "icon" : "build/icon.ico"
+    },
+    "mac" : {
+      "icon" : "build/icon.png"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "publish": {
+      "provider": "github",
+      "repo": "electron-cra-example",
+      "owner": "johndyer24"
+    }
   }
 }
