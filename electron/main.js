@@ -3,6 +3,7 @@ const {app, BrowserWindow} = require('electron')
 const path = require ('path');
 const url = require ('url');
 //require('./ipcmain');
+var robot = require("robotjs");
 
 function createWindow () {
   // Создаем окно браузера.
@@ -35,6 +36,7 @@ function createWindow () {
 // Некоторые API могут использоваться только после возникновения этого события.
 app.whenReady().then(() => {
   createWindow()
+  robot.moveMouse(100, 100)
   
   app.on('activate', function () {
     // На MacOS обычно пересоздают окно в приложении,

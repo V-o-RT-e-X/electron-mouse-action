@@ -7,9 +7,11 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "node-abi": "^3.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "robotjs": "^0.6.0",
     "web-vitals": "^2.1.0"
   },
   "main": "electron/main.js",
@@ -22,6 +24,7 @@
     "electron": "electron .",
     "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
     "build-electron": "mkdir build/electron && cp -r electron/. build/electron",
+    "rebuild": "npm rebuild --runtime=electron --target=16.0.7 --disturl=https://atom.io/download/atom-shell --abi=3.5.0",
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never"
   },
   "eslintConfig": {
@@ -50,11 +53,11 @@
     "electron-builder": "^22.14.5"
   },
   "build": {
-    "win" : {
-      "icon" : "build/icon.ico"
+    "win": {
+      "icon": "build/icon.ico"
     },
-    "mac" : {
-      "icon" : "build/icon.png"
+    "mac": {
+      "icon": "build/icon.png"
     },
     "files": [
       "build/**/*",
