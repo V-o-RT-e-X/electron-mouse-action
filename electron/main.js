@@ -64,12 +64,15 @@ ipcMain.on('start', (_, data) => {
 })
 
 function showNotification () {
-  new Notification({ title: 'Electron', body: 'Приложение запущено' }).show()
+  new Notification({ title: 'Electron', body: 'Приложение запущено. Для выхода из приложения нажмите "CTRL + X"' }).show()
 }
 // Этот метод вызывается когда приложение инициализируется
 // и будет готово для создания окон.
 // Некоторые API могут использоваться только после возникновения этого события.
 app.whenReady().then(() => {
+  globalShortcut.register('CommandOrControl+X', () => {
+    app.quit()
+  })
   createWindow()
   showNotification()
   tray = new Tray('/electron/tray.png')
